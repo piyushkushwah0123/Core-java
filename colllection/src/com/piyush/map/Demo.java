@@ -17,14 +17,12 @@ class Passport {
 		this.city = city;
 		this.country = country;
 	}
-
 	@Override
 	public String toString() {
 		return "Passport [name=" + name + ", city=" + city + ", country=" + country + "]";
 	}
 
 }
-
 public class Demo {
 	
 	public static void main(String[] args) {
