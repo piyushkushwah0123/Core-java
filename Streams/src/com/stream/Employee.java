@@ -21,6 +21,7 @@ public class Employee {
 		this.department = department;
 		this.yearofJoining = yearofJoining;
 		this.salary = salary;
+		
 	}
 	public int getId() {
 		return id;
@@ -64,6 +65,4 @@ public class Employee {
 	public void setSalary(double salary) {
 		this.salary = salary;
 	}
-	
-
 }
