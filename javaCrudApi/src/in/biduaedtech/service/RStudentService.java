@@ -1,17 +1,12 @@
 package in.biduaedtech.service;
 
-import in.biduaedtech.dto.Student;
-
 public interface RStudentService {
 
-//	Operation to be implemented
-	
-	public String addStudent(String sname, Integer sage, String saddress);
+	public String addStudent(String sname, Integer sage, String saddress) throws Exception;
 
-	public String searchStudent(Integer sid);
-	
-	public String updateStudent(String sname, Integer sage, String saddress);
-	
-	public String deleteStudent(Integer sid);
-	
+	public String searchStudent(Integer sid) throws Exception;
+
+	public String updateStudent(String sname, Integer sage, String saddress) throws Exception;
+
+	public String deleteStudent(Integer sid) throws Exception;
 }

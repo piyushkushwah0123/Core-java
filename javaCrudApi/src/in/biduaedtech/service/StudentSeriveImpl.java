@@ -1,30 +1,37 @@
 package in.biduaedtech.service;
-import in.biduaedtech.dto.Student;
-import in.biduaedtech.servicefactory.StudentServiceFactory;
-public class StudentSeriveImpl implements RStudentService{
 
-	RStudentService stdService;
-	
-	public String addStudent(String sname, Integer sage, String saddress) {
-		stdService = StudentServiceFactory.getStudentService();
-		return stdService.addStudent(sname, sage, saddress);
+import in.biduaedtech.daofactory.StudentDaoFactory;
+import in.biduaedtech.persistance.RStudentDao;
+
+public class StudentSeriveImpl implements RStudentService {
+
+	RStudentDao studentDao;
+
+	@Override
+	public String addStudent(String sname, Integer sage, String saddress) throws Exception {
+
+		studentDao = StudentDaoFactory.getStudentDao();
+		return studentDao.addStudent(sname, sage, saddress);
 	}
 
 	@Override
-	public String searchStudent(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
+	public String searchStudent(Integer sid) throws Exception {
+
+		studentDao = StudentDaoFactory.getStudentDao();
+		return studentDao.searchStudent(sid);
 	}
 
 	@Override
-	public String updateStudent(String sname, Integer sage, String saddress) {
-		// TODO Auto-generated method stub
-		return null;
+	public String updateStudent(String sname, Integer sage, String saddress) throws Exception {
+
+		studentDao = StudentDaoFactory.getStudentDao();
+		return studentDao.updateStudent(sname, sage, saddress);
 	}
 
 	@Override
-	public String deleteStudent(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
-	}	
+	public String deleteStudent(Integer sid) throws Exception {
+
+		studentDao = StudentDaoFactory.getStudentDao();
+		return studentDao.deleteStudent(sid);
+	}
 }
