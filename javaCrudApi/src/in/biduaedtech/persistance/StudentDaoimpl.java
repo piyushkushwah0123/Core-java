@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import in.biduatech.util.DBConnection;
+
 public class StudentDaoimpl implements RStudentDao {
 
     private static final String DBURL = "jdbc:mysql://localhost:3306/sqldb";
@@ -17,8 +19,7 @@ public class StudentDaoimpl implements RStudentDao {
     public String addStudent(String sname, Integer sage, String saddress)
             throws SQLException, ClassNotFoundException {
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(DBURL, DBUSERNAME, DBPASSWORD);
+    	Connection con = DBConnection.getConnection();
 
         String sql = "insert into student(sname,sage,saddress) values(?,?,?)";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -38,8 +39,7 @@ public class StudentDaoimpl implements RStudentDao {
     @Override
     public String searchStudent(Integer sid) throws SQLException, ClassNotFoundException {
     	
-    	Class.forName("com.mysql.cj.jdbc.Driver");
-    	Connection con = DriverManager.getConnection(DBURL, DBUSERNAME, DBPASSWORD);
+    	 Connection con = DBConnection.getConnection();
     	
     	String sql = "select * from student where sid=?";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -47,15 +47,25 @@ public class StudentDaoimpl implements RStudentDao {
         ps.setInt(1, sid);
 
         ResultSet rs = ps.executeQuery();
+        
+        if (rs.next()) {
 
-        return null;
+            Integer id = rs.getInt("sid");
+            String name = rs.getString("sname");
+            Integer age = rs.getInt("sage");
+            String address = rs.getString("saddress");
+
+            return id + " " + name + " " + age + " " + address;
+        } 
+        else {
+            return "Student Not Found";
+        }
     }
 
     @Override
     public String updateStudent(String sname, Integer sage, String saddress) throws SQLException, ClassNotFoundException {
     	
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        Connection con = DriverManager.getConnection(DBURL,DBUSERNAME, DBPASSWORD);
+    	 Connection con = DBConnection.getConnection();
         
         String sql = "update student set sname=?, sage=?, saddress=? where sid=?";
         PreparedStatement ps = con.prepareStatement(sql);
@@ -74,6 +84,19 @@ public class StudentDaoimpl implements RStudentDao {
 
     @Override
     public String deleteStudent(Integer sid) throws SQLException, ClassNotFoundException {
-        return null;
+
+    	 Connection con = DBConnection.getConnection();
+
+    	    String sql = "delete from student where sid=?";
+    	    PreparedStatement ps = con.prepareStatement(sql);
+
+    	    ps.setInt(1, sid);
+
+    	    int row = ps.executeUpdate();
+
+    	    if (row == 1)
+    	        return "success";
+    	    else
+    	        return "fail";
     }
 }
