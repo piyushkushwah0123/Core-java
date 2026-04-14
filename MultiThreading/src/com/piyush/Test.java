@@ -50,10 +50,8 @@ public class Test {
 //            Thread.sleep(3000);
 
 //            synchronized (this) {   
-//
 //                System.out.println(Thread.currentThread().getName() + " Piyush");
 //                Thread.sleep(3000);
-//
 //                System.out.println(Thread.currentThread().getName() + " Kushwah");
 //                Thread.sleep(3000);
 //            }
@@ -98,13 +96,10 @@ public class Test {
 //            // Non-critical section
 //            System.out.println(Thread.currentThread().getName() + " Hello");
 //            Thread.sleep(3000);
-//
-//        
+//    
 //            synchronized (lock) {   
-//
 //                System.out.println(Thread.currentThread().getName() + " Piyush");
 //                Thread.sleep(3000);
-//
 //                System.out.println(Thread.currentThread().getName() + " Kushwah");
 //                Thread.sleep(3000);
 //            }
@@ -128,4 +123,3 @@ public class Test {
 //        t3.start();
 //    }
 //}
-
